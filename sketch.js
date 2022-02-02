@@ -1,7 +1,6 @@
 
-d = 10;
-fade = 255;
-xClick = yClick = 0;
+xClick = 0;
+yClick = 0;
 z = 0;
 var puddles = [];
 
@@ -9,27 +8,20 @@ var puddles = [];
 function setup() {
     createCanvas(windowWidth, windowHeight);
     setLineDash([5, 5]);
+    setInterval(makeRandomPuddles,100);
+
   }
 
 
 function draw() {
   
   background("#285988");
-  noFill();
-  stroke(175,205,234,fade);
-  strokeWeight(3);
-  circle(300,200,d);
-  circle(900,650,d);
-  circle(xClick,yClick,d);
-  //circle(random(windowWidth),random(windowHeight),d);
 
-  d = d+10;
-  fade = fade-5;
+  for(var i = 0; i < puddles.length; i++){
 
-  if(fade <=0){
-    fade = 255;
-    d = 10;
-  }
+    puddles[i].update();
+    puddles[i].drawScreen();
+  } 
 
   
 }
@@ -52,17 +44,56 @@ function mousePressed(){
 }
 
 
+
+rgb = [45,49,161];
+c1 = [244,241,17];
+c2 = [0,0,0];
+c3 = [223,36,190];
+colors = [c1,c2,c3];
+
+
 class Puddle{
-  constructor(x,y, opt) {
-    this.x = x;
-    this.y = y;
-    this.d = 10;
-    this.option = opt;
-    if(opt != 0){
-        this.fade = 300;
-    } else {
-        this.fade = 150;
+
+    constructor(x,y, opt) {
+        this.x = x;
+        this.y = y;
+        this.d = 10;
+        this.option = opt;
+        if(opt != 0){
+            this.fade = 300;
+        } else {
+            this.fade = 150;
+        }
     }
-  }
+
+    drawScreen(){
+        if(this.option != 0){
+            var pick = Math.floor(Math.random()*colors.length);
+            this.r = arr[0];
+            this.g = arr[1];
+            this.b = arr[2];
+        } else if(this.option == 0){
+            this.r = this.b = this.g = 0;
+        }
+        
+        stroke(this.r,this.g,this.b, this.fade);
+        strokeWeight(3);
+        noFill();
+        circle(this.x,this.y,this.d);
+
+    }
+
+    update(){
+        this.d = this.d+10;
+        this.fade = this.fade - 5;
+    }
+    
 }
+
+
+
+
+
+
+
 
