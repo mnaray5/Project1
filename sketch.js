@@ -18,7 +18,11 @@ function draw() {
   background("#285988");
 
   for(var i = 0; i < puddles.length; i++){
-
+    if(z == 1){
+      let q = new Puddle(xClick, yClick,1);
+      puddles.unshift(q);
+      z = 0;
+    }
     puddles[i].update();
     puddles[i].drawScreen();
   } 
@@ -58,6 +62,7 @@ class Puddle{
         this.x = x;
         this.y = y;
         this.d = 10;
+        this.r = this.b = this.g = 0;
         this.option = opt;
         if(opt != 0){
             this.fade = 300;
@@ -69,6 +74,7 @@ class Puddle{
     drawScreen(){
         if(this.option != 0){
             var pick = Math.floor(Math.random()*colors.length);
+            var arr = colors[0];
             this.r = arr[0];
             this.g = arr[1];
             this.b = arr[2];
