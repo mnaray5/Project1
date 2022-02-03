@@ -8,6 +8,7 @@ var c1 = [244,241,17];
 var c2 = [0,0,0];
 var c3 = [223,36,190];
 var colors = [c1,c2,c3];
+bgcolor = "#285988";
 
 
 function setup() {
@@ -20,7 +21,7 @@ function setup() {
 
 function draw() {
   
-  background("#285988");
+  background(bgcolor);
 
   for(var i = 0; i < puddles.length; i++){
     if(z == 1){
@@ -52,6 +53,17 @@ function mousePressed(){
     
 }
 
+function keyPressed(){
+  if(key == 1){
+    bgcolor = "#285988";
+  } else if(key == 2){
+    bgcolor = "#4B6479";
+  } else if(key == 3){
+    bgcolor = "#000000";
+
+  }
+}
+
 
 
 
@@ -81,7 +93,7 @@ class Puddle{
             this.g = arr[1];
             this.b = arr[2];
         } else if(this.option == 0){
-            this.r = this.b = this.g = 0;
+            this.r = this.b = this.g = 255;
         }
         
         stroke(this.r,this.g,this.b, this.fade);
