@@ -3,6 +3,11 @@ xClick = 0;
 yClick = 0;
 z = 0;
 var puddles = [];
+var rgb = [45,49,161];
+var c1 = [244,241,17];
+var c2 = [0,0,0];
+var c3 = [223,36,190];
+var colors = [c1,c2,c3];
 
 
 function setup() {
@@ -49,11 +54,7 @@ function mousePressed(){
 
 
 
-rgb = [45,49,161];
-c1 = [244,241,17];
-c2 = [0,0,0];
-c3 = [223,36,190];
-colors = [c1,c2,c3];
+
 
 
 class Puddle{
@@ -74,7 +75,8 @@ class Puddle{
     drawScreen(){
         if(this.option != 0){
             var pick = Math.floor(Math.random()*colors.length);
-            var arr = colors[0];
+            var arr = colors[pick];
+
             this.r = arr[0];
             this.g = arr[1];
             this.b = arr[2];
