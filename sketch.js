@@ -2,13 +2,39 @@
 xClick = 0;
 yClick = 0;
 z = 0;
+k = 1;
 var puddles = [];
-var rgb = [45,49,161];
-var c1 = [244,241,17];
-var c2 = [0,0,0];
-var c3 = [223,36,190];
-var colors = [c1,c2,c3];
+
 bgcolor = "#285988";
+
+c1 = [255,255,255];
+c2 = [65,76,94];
+c3 = [186,212,251];
+colors1 = [c1,c2,c3];
+
+c4 = [100,115,125];
+c5 = [57,74,86];
+c6 = [155,156,157];
+colors2 = [c4,c5,c6];
+
+c7 = [244,241,17];
+c8 = [39,243,124];
+c9 = [223,36,190];
+c10 = [165,39,243];
+c11 = [241,73,178];
+c12 = [216,255,12];
+colors3 = [c7,c8,c9,c10,c11,c12];
+
+colors = [colors1,colors2,colors3];
+
+dc1 = [203, 248, 255];
+dc2 = [35,40,61];
+f1 = [116,255,121];
+f2 = [49,249,255];
+f3 = [255,0,0];
+f4 = [255,124,12];
+dColors = [dc1,dc2];
+fColors = [f1,f2,f3,f4];
 
 
 function setup() {
@@ -25,7 +51,7 @@ function draw() {
 
   for(var i = 0; i < puddles.length; i++){
     if(z == 1){
-      let q = new Puddle(xClick, yClick,1);
+      let q = new Puddle(xClick, yClick,k+3);
       puddles.unshift(q);
       z = 0;
     }
@@ -37,7 +63,7 @@ function draw() {
 }
 
 function makeRandomPuddles(){
-  let p = new Puddle(random(100, windowWidth-50), random(100, windowHeight-50),0);
+  let p = new Puddle(random(100, windowWidth-50), random(100, windowHeight-50),k);
   puddles.push(p);
 }
 
@@ -55,11 +81,16 @@ function mousePressed(){
 function keyPressed(){
   if(key == 1){
     bgcolor = "#285988";
+    k = 1;
+    puddles = [];
   } else if(key == 2){
     bgcolor = "#4B6479";
+    k = 2;
+    puddles = [];
   } else if(key == 3){
     bgcolor = "#000000";
-
+    k = 3;
+    puddles = [];
   }
 }
 
@@ -76,7 +107,8 @@ class Puddle{
         this.d = 10;
         this.r = this.b = this.g = 0;
         this.option = opt;
-        if(opt != 0){
+        this.myColor = Math.floor(Math.random()*fColors.length);
+        if(opt > 3){
             this.fade = 300;
         } else {
             this.fade = 150;
@@ -84,19 +116,28 @@ class Puddle{
     }
 
     drawScreen(){
-        if(this.option != 0){
-            var pick = Math.floor(Math.random()*colors.length);
-            var arr = colors[pick];
+        if(this.option > 3){
+          var cArr = colors[this.option-4];
+          var pick = Math.floor(Math.random()*cArr.length);
+          var arr = cArr[pick];
 
-            this.r = arr[0];
-            this.g = arr[1];
-            this.b = arr[2];
-        } else if(this.option == 0){
-            this.r = this.b = this.g = 255;
+          this.r = arr[0];
+          this.g = arr[1];
+          this.b = arr[2];
+        } else if(this.option == 1 || this.option == 2){
+          var arr = dColors[this.option-1];
+          this.r = arr[0];
+          this.g = arr[1];
+          this.b = arr[2];
+        } else if(this.option == 3){
+          var arr = fColors[this.myColor];
+          this.r = arr[0];
+          this.g = arr[1];
+          this.b = arr[2];
         }
         
         stroke(this.r,this.g,this.b, this.fade);
-        strokeWeight(3);
+        strokeWeight(4);
         noFill();
         circle(this.x,this.y,this.d);
 
