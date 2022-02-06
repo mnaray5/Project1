@@ -39,7 +39,6 @@ function draw() {
 function makeRandomPuddles(){
   let p = new Puddle(random(100, windowWidth-50), random(100, windowHeight-50),0);
   puddles.push(p);
-  puddles.add = 5;
 }
 
 function setLineDash(list) {
