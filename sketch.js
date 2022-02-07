@@ -35,7 +35,7 @@ f3 = [255,0,0];
 f4 = [255,124,12];
 dColors = [dc1,dc2];
 fColors = [f1,f2,f3,f4];
-
+  
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
@@ -55,7 +55,6 @@ function draw() {
       puddles.unshift(q);
       z = 0;
     }
-    puddles[i].update();
     puddles[i].drawScreen();
   } 
 
@@ -140,12 +139,9 @@ class Puddle{
         strokeWeight(4);
         noFill();
         circle(this.x,this.y,this.d);
-
-    }
-
-    update(){
         this.d = this.d+10;
         this.fade = this.fade - 5;
+
     }
     
 }
