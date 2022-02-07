@@ -106,7 +106,7 @@ class Puddle{
         this.d = 10;
         this.r = this.b = this.g = 0;
         this.option = opt;
-        this.myColor = Math.floor(Math.random()*fColors.length);
+        this.randFColor = Math.floor(Math.random()*fColors.length);
         if(opt > 3){
             this.fade = 300;
         } else {
@@ -129,7 +129,7 @@ class Puddle{
           this.g = arr[1];
           this.b = arr[2];
         } else if(this.option == 3){
-          var arr = fColors[this.myColor];
+          var arr = fColors[this.randFColor];
           this.r = arr[0];
           this.g = arr[1];
           this.b = arr[2];
