@@ -33,14 +33,17 @@ f1 = [116,255,121];
 f2 = [49,249,255];
 f3 = [255,0,0];
 f4 = [255,124,12];
+f5 = [255,255,255];
 dColors = [dc1,dc2];
-fColors = [f1,f2,f3,f4];
+fColors = [f1,f2,f3,f4,f5];
   
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
     setLineDash([5, 5]);
     setInterval(makeRandomPuddles,100);
+    window.alert("USER INSTRUCTIONS: Rain Puddles makes random puddles on your screen. Click anywhere on the screen to create your own puddles! There are 3 different modes - Press 1, 2 or 3 on the keyboard to see the different variations!");
+
 
   }
 
@@ -87,7 +90,7 @@ function keyPressed(){
     k = 2;
     puddles = [];
   } else if(key == 3){
-    bgcolor = "#000000";
+    bgcolor = "#030021";
     k = 3;
     puddles = [];
   }
@@ -123,6 +126,7 @@ class Puddle{
           this.r = arr[0];
           this.g = arr[1];
           this.b = arr[2];
+
         } else if(this.option == 1 || this.option == 2){
           var arr = dColors[this.option-1];
           this.r = arr[0];
@@ -139,6 +143,8 @@ class Puddle{
         strokeWeight(4);
         noFill();
         circle(this.x,this.y,this.d);
+        circle(this.x,this.y,this.d-10);
+
         this.d = this.d+10;
         this.fade = this.fade - 5;
 
