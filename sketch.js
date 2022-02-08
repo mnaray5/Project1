@@ -143,7 +143,9 @@ class Puddle{
         strokeWeight(4);
         noFill();
         circle(this.x,this.y,this.d);
+        if(this.option == 6){
         circle(this.x,this.y,this.d-10);
+        }
 
         this.d = this.d+10;
         this.fade = this.fade - 5;
