@@ -42,7 +42,7 @@ function setup() {
     createCanvas(windowWidth, windowHeight);
     setLineDash([5, 5]);
     setInterval(makeRandomPuddles,100);
-    window.alert("USER INSTRUCTIONS: Rain Puddles makes random puddles on your screen. Click anywhere on the screen to create your own puddles! There are 3 different modes - Press 1, 2 or 3 on the keyboard to see the different variations!");
+    window.alert("USER INSTRUCTIONS: Rain Puddles makes random puddles on your screen, emulating a rainy day. Click anywhere on the screen to create your own personal puddles! There are 3 different modes - Press 1, 2 or 3 on the keyboard to see the different variations!");
 
 
   }
